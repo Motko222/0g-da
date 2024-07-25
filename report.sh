@@ -30,7 +30,7 @@ cat << EOF
   "folder_size":"$folder_size",
   "node_rpc":"$node_rpc",
   "node_version":"$node_version",
-  "node_status":"$node_height",
+  "node_status":"$node_status"
 }
 EOF
 
