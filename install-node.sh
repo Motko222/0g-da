@@ -11,8 +11,11 @@ esac
 [ -d ~/backup/0g-da-node ] || mkdir ~/backup/0g-da-node
 cp ~/0g-da-node/config.toml ~/backup/0g-da-node/config.toml
 
-apt install libssl-dev
-apt install protobuf-compiler
+apt-get update -y
+apt-get upgrade -y
+apt install libssl-dev -y
+apt install protobuf-compiler -y
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 cd ~
 rm -r 0g-da-node
