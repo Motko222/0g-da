@@ -16,6 +16,7 @@ apt-get upgrade -y
 apt install libssl-dev -y
 apt install protobuf-compiler -y
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source $HOME/.cargo/env
 
 cd ~
 rm -r 0g-da-node
