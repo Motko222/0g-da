@@ -21,6 +21,7 @@ cd ~
 rm -r 0g-da-node
 git clone https://github.com/0glabs/0g-da-node.git
 cd 0g-da-node
+git checkout tags/v1.0.1 -b v1.0.1
 cargo build --release
 ./dev_support/download_params.sh
 cargo run --bin key-gen
