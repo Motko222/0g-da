@@ -25,12 +25,20 @@ node_status=$(echo $json | jq -r .statusCode)
 cat << EOF
 {
   "updated":"$(date --utc +%FT%TZ)",
-  "id":"$ID",
-  "machine":"$MACHINE",
+  "measurement":"report",
+  "tags":   
+  {
+    "id":"$ID",
+    "machine":"$MACHINE",
+    "grp":"$group"
+  },
+  "fields":
+  {
   "folder_size":"$folder_size",
   "node_rpc":"$node_rpc",
   "node_version":"$node_version",
   "node_status":"$node_status"
+  },
 }
 EOF
 
