@@ -30,7 +30,7 @@ cat << EOF
    { "key":"machine","value":"$MACHINE" },
    { "key":"grp","value":"$grp" },
    { "key":"owner","value":"$OWNER" }
-  ]
+  ],
   "fields": [
    { "key":"folder_size","value":"$folder_size" },
    { "key":"node_rpc","value":"$node_rpc" },
