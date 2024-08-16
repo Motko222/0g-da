@@ -7,7 +7,6 @@ source ~/.bash_profile
 grp=da
 network=testnet
 chain=newton
-id=$ID
 
 #get folder size
 folder_size=$(du -hs -L ~/0g-da-node | awk '{print $1}')
@@ -50,6 +49,6 @@ then
   --header "Content-Type: text/plain; charset=utf-8" \
   --header "Accept: application/json" \
   --data-binary "
-    report,machine=$MACHINE,id=$id,grp=$group,owner=$OWNER status=\"$status\",message=\"$message\",node_version=\"$node_version\",node_rpc=\"$node_rpc\",chain=\"$chain\",node_status=\"$node_status\" $(date +%s%N) 
+    report,machine=$MACHINE,id=$ID,grp=$grp,owner=$OWNER status=\"$status\",message=\"$message\",node_version=\"$node_version\",node_rpc=\"$node_rpc\",chain=\"$chain\",node_status=\"$node_status\" $(date +%s%N) 
     "
 fi
