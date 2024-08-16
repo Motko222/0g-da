@@ -4,7 +4,7 @@ source ~/scripts/0g-chain/cfg
 source ~/.bash_profile
 
 #generic
-group=na
+group=da
 network=testnet
 chain=newton
 id=$ID
@@ -51,6 +51,6 @@ then
   --header "Content-Type: text/plain; charset=utf-8" \
   --header "Accept: application/json" \
   --data-binary "
-    report,machine=$MACHINE,id=$id,grp=$group status=\"$status\",message=\"$message\",version=\"$version\",url=\"$url\",chain=\"$chain\",node_status=\"$node_status\" $(date +%s%N) 
+    report,machine=$MACHINE,id=$id,grp=$group,owner=$OWNER status=\"$status\",message=\"$message\",node_version=\"$node_version\",node_rpc=\"$node_rpc\",chain=\"$chain\",node_status=\"$node_status\" $(date +%s%N) 
     "
 fi
