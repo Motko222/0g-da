@@ -31,13 +31,13 @@ cat << EOF
    { "key":"machine","value":"$MACHINE" },
    { "key":"grp","value":"$grp" },
    { "key":"owner","value":"$OWNER" }
-  ],
+  ]
   "fields": [
    { "key":"folder_size","value":"$folder_size" },
    { "key":"node_rpc","value":"$node_rpc" },
    { "key":"node_version","value":"$node_version" },
-   { "key":"node_status","value":"$node_status" },
-  ],
+   { "key":"node_status","value":"$node_status" }
+  ]
 }
 EOF
 
