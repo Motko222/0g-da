@@ -21,6 +21,7 @@ node_version=$(./server --version | awk '{print $2}')
 cd ~
 node_status=$(./grpcurl --plaintext --import-path ~/ --proto ~/signer.proto $node_rpc signer.Signer/GetStatus | jq -r .statusCode)
 disperser_status=$(./grpcurl --plaintext $disperser_rpc grpc.health.v1.Health/Check | jq -r .status )
+retriever_status=$(systemctl status 0g-da-retriever --no-pager | grep Active | awk '{print $2}')
 
 cat << EOF
 {
@@ -37,7 +38,8 @@ cat << EOF
    { "key":"node_rpc","value":"$node_rpc" },
    { "key":"node_version","value":"$node_version" },
    { "key":"node_status","value":"$node_status" },
-   { "key":"disperser_status","value":"$disperser_status" }
+   { "key":"disperser_status","value":"$disperser_status" },
+   { "key":"retriever_status","value":"$retriever_status" }
   ]
 }
 EOF
@@ -51,6 +53,6 @@ then
   --header "Content-Type: text/plain; charset=utf-8" \
   --header "Accept: application/json" \
   --data-binary "
-    report,machine=$MACHINE,id=$ID,grp=$grp,owner=$OWNER status=\"$status\",message=\"$message\",node_version=\"$node_version\",node_rpc=\"$node_rpc\",chain=\"$chain\",node_status=\"$node_status\",disperser_status=\"$disperser_status\" $(date +%s%N) 
+    report,machine=$MACHINE,id=$ID,grp=$grp,owner=$OWNER status=\"$status\",message=\"$message\",node_version=\"$node_version\",node_rpc=\"$node_rpc\",chain=\"$chain\",node_status=\"$node_status\",disperser_status=\"$disperser_status\,retriever_status=\"$retriever_status\" $(date +%s%N) 
     "
 fi
