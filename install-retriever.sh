@@ -1,6 +1,6 @@
 #!/bin/bash
 
-read -p "Tag? (https://github.com/0glabs/0g-da-retriever/releases) " tag
+#read -p "Tag? (https://github.com/0glabs/0g-da-retriever/releases) " tag
 
 source $HOME/.cargo/env
 
@@ -12,9 +12,9 @@ cp ~/0g-da-retriever/run/config.toml ~/backup/0g-da-retriever/config.toml
 #deploy
 cd ~
 rm -r 0g-da-retriever
-git clone https://github.com/0glabs/0g-da-node.git
+git clone https://github.com/0glabs/0g-da-retriever.git
 cd 0g-da-retriever
-git checkout tags/$tag -b $tag
+#git checkout tags/$tag -b $tag
 cargo build --release
 
 #restore config files
