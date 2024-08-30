@@ -7,6 +7,7 @@ source ~/.bash_profile
 grp=da
 network=testnet
 chain=newton
+owner=$OWNER
 
 #get folder size
 folder_size=$(du -hs -L ~/0g-da-node | awk '{print $1}')
