@@ -14,6 +14,7 @@ folder_size=$(du -hs -L ~/0g-da-node | awk '{print $1}')
 
 #get RPC addresses
 node_rpc=$(cat ~/0g-da-node/config.toml | grep '^grpc_listen_address =' | tail -1 | awk '{print $3}' | sed 's/"//g')
+chain_rpc=$(cat ~/0g-da-node/config.toml | grep '^eth_rpc_endpoint =' | tail -1 | awk '{print $3}' | sed 's/"//g')
 disperser_rpc=localhost:51001
 
 #get da node info
@@ -29,18 +30,19 @@ cat << EOF
   "updated":"$(date --utc +%FT%TZ)",
   "measurement":"report",
   "tags": [   
-   { "key":"id","value":"$ID" },
-   { "key":"machine","value":"$MACHINE" },
-   { "key":"grp","value":"$grp" },
-   { "key":"owner","value":"$OWNER" }
+   { "id","$ID" },
+   { "machine","$MACHINE" },
+   { "grp","$grp" },
+   { "owner","$OWNER" }
   ],
   "fields": [
-   { "key":"folder_size","value":"$folder_size" },
-   { "key":"node_rpc","value":"$node_rpc" },
-   { "key":"node_version","value":"$node_version" },
-   { "key":"node_status","value":"$node_status" },
-   { "key":"disperser_status","value":"$disperser_status" },
-   { "key":"retriever_status","value":"$retriever_status" }
+   { "folder_size","$folder_size" },
+   { "node_rpc","$node_rpc" },
+   { "chain_rpc","$chain_rpc" },
+   { "node_version","$node_version" },
+   { "node_status","$node_status" },
+   { "disperser_status","$disperser_status" },
+   { "retriever_status","$retriever_status" }
   ]
 }
 EOF
