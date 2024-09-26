@@ -1,13 +1,14 @@
 #!/bin/bash
 
-source ~/scripts/0g-chain/cfg
+path=$(cd -- $(dirname -- "${BASH_SOURCE[0]}") && pwd)
+folder=$(echo $path | awk -F/ '{print $NF}')
+json=~/logs/report-$folder
 source ~/.bash_profile
+source $path/cfg
 
 #generic
-grp=da
 network=testnet
 chain=newton
-owner=$OWNER
 
 #get folder size
 folder_size=$(du -hs -L ~/0g-da-node | awk '{print $1}')
@@ -32,7 +33,7 @@ cat << EOF
   "tags": [   
    { "id":"$ID" },
    { "machine":"$MACHINE" },
-   { "grp":"$grp" },
+   { "grp":"da" },
    { "owner":"$OWNER" }
   ],
   "fields": [
@@ -46,16 +47,4 @@ cat << EOF
   ]
 }
 EOF
-
-# send data to influxdb
-if [ ! -z $INFLUX_HOST ]
-then
- curl --request POST \
- "$INFLUX_HOST/api/v2/write?org=$INFLUX_ORG&bucket=$INFLUX_BUCKET&precision=ns" \
-  --header "Authorization: Token $INFLUX_TOKEN" \
-  --header "Content-Type: text/plain; charset=utf-8" \
-  --header "Accept: application/json" \
-  --data-binary "
-    report,machine=$MACHINE,id=$ID,grp=$grp,owner=$OWNER status=\"$status\",message=\"$message\",node_version=\"$node_version\",node_rpc=\"$node_rpc\",chain=\"$chain\",node_status=\"$node_status\",disperser_status=\"$disperser_status\",retriever_status=\"$retriever_status\" $(date +%s%N) 
-    "
-fi
+cat $json
