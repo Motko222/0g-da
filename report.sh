@@ -26,7 +26,7 @@ node_status=$(./grpcurl --plaintext --import-path ~/ --proto ~/signer.proto $nod
 disperser_status=$(./grpcurl --plaintext $disperser_rpc grpc.health.v1.Health/Check | jq -r .status )
 retriever_status=$(systemctl status 0g-da-retriever --no-pager | grep Active | awk '{print $2}')
 
-cat << EOF
+cat >$json << EOF
 {
   "updated":"$(date --utc +%FT%TZ)",
   "measurement":"report",
