@@ -30,21 +30,21 @@ cat >$json << EOF
 {
   "updated":"$(date --utc +%FT%TZ)",
   "measurement":"report",
-  "tags": [   
-   { "id":"$ID" },
-   { "machine":"$MACHINE" },
-   { "grp":"da" },
-   { "owner":"$OWNER" }
-  ],
-  "fields": [
-   { "folder_size":"$folder_size" },
-   { "node_rpc":"$node_rpc" },
-   { "chain_rpc":"$chain_rpc" },
-   { "node_version":"$node_version" },
-   { "node_status":"$node_status" },
-   { "disperser_status":"$disperser_status" },
-   { "retriever_status":"$retriever_status" }
-  ]
+  "tags": {
+     "id":"$ID",
+     "machine":"$MACHINE",
+     "grp":"da",
+     "owner":"$OWNER"
+  },
+  "fields": {
+     "folder_size":"$folder_size",
+     "node_rpc":"$node_rpc",
+     "chain_rpc":"$chain_rpc",
+     "node_version":"$node_version",
+     "node_status":"$node_status",
+     "disperser_status":"$disperser_status",
+     "retriever_status":"$retriever_status"
+  }
 }
 EOF
 cat $json
