@@ -47,4 +47,4 @@ cat >$json << EOF
   }
 }
 EOF
-cat $json
+cat $json | jq
