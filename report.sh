@@ -25,6 +25,9 @@ cd ~
 node_status=$(./grpcurl --plaintext --import-path ~/ --proto ~/signer.proto $node_rpc signer.Signer/GetStatus | jq -r .statusCode)
 disperser_status=$(./grpcurl --plaintext $disperser_rpc grpc.health.v1.Health/Check | jq -r .status )
 retriever_status=$(systemctl status 0g-da-retriever --no-pager | grep Active | awk '{print $2}')
+not_enough=$(sudo journalctl -n 100 -u 0g-da-node.service --no-hostname -o cat | grep "insufficient bonded amount" | tail -1 | wc -l)
+
+[ $not_enough -gt 0 ] && message="not enough delegated"
 
 cat >$json << EOF
 {
@@ -43,7 +46,9 @@ cat >$json << EOF
      "node_version":"$node_version",
      "node_status":"$node_status",
      "disperser_status":"$disperser_status",
-     "retriever_status":"$retriever_status"
+     "retriever_status":"$retriever_status",
+     "not_enough":"$not_enough",
+     "message":"$message"
   }
 }
 EOF
