@@ -21,3 +21,6 @@ cargo run --bin key-gen
 
 #restore config files
 cp ~/backup/0g-da-node/config.toml ~/0g-da-node/config.toml
+
+#save version
+echo $tag >/root/logs/da-node-version
